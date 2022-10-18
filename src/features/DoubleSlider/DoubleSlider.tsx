@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import NoUiSlider from 'nouislider';
-
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-
 import '../../Styles/DoubleSlider.css'
 
 import {
-  decrement,
-  increment,
-  incrementByAmount,
-  randomize,
-  selectDoubleSlider,
+  decrement, increment, incrementByAmount,
+  randomize, selectDoubleSlider,
 } from './DoubleSliderSlice';
-
 
 const Input = styled.input`
   border-radius: 6px;
@@ -59,6 +52,7 @@ const DoubleSlider: React.FC<Props> = (props) => {
           aria-label="Randomize name"
           onClick={() => dispatch(randomize())}>Randomize</button>
         <br/><br/>
+        <div className = "attrIndic">medTestA<hr/></div>
         <div className="slider">
           <div className="progress"></div>
         </div>

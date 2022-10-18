@@ -62,13 +62,13 @@ export default function App() {
           </div>
         </div>
         <div className="item4">Right
-          <div id="lineCharts2">
+          {/* <div id="lineCharts2">
             <LineChart
               options={undefined}
               numLongitunal={0}
               numLines={0}
               labels={['a', 42, 11]}></LineChart>
-          </div>
+          </div> */}
         </div>
         <div className="item5">
           Footer
