@@ -56,19 +56,11 @@ export default function App() {
               options={undefined}
               numLongitunal={0}
               numLines={lastPersonIndex}
-              labels={['1', '2', 3, '4', '5']}
               patients={patients}
               ></LineChart>
           </div>
         </div>
         <div className="item4">Right
-          {/* <div id="lineCharts2">
-            <LineChart
-              options={undefined}
-              numLongitunal={0}
-              numLines={0}
-              labels={['a', 42, 11]}></LineChart>
-          </div> */}
         </div>
         <div className="item5">
           Footer

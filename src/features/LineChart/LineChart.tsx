@@ -50,8 +50,8 @@ const LineChart: FC<LineChartProps> = ((props) => {
         datasets.push({
             label: `Dataset ${(props.patients)?props.patients[0].medTests[i].testName:'#'}`,
             data: [...props.patients[0].medTests[i].listRecords.map(a=>a.score)],
-            borderColor: `rgb(${Math.random()*(i+1)*800%255}, ${Math.random()*(i+1)*200%255}, ${Math.random()*(i+1)*400%255})`,
-            backgroundColor: `rgba(${Math.random()*(i+1)*800%255}, ${Math.random()*(i+1)*200%255}, ${Math.random()*(i+1)*400%255}, 0.5)`,
+            borderColor: `rgb(${(i+3)*700%255}, ${(i+1)*200%255}, ${(i+1)*400%255})`,
+            backgroundColor: `rgba(${(i+3)*700%255}, ${(i+1)*200%255}, ${(i+1)*400%255}, 0.5)`,
         })
     }
 

@@ -8,13 +8,7 @@ import {
   randomize, selectDoubleSlider,
 } from './DoubleSliderSlice';
 
-const Input = styled.input`
-  border-radius: 6px;
-  min: '0'
-  max: '100'
-  -webkit-appearance: none;
-  -moz-appearance: none;
-`;
+const Input = styled.input` border-radius: 6px; min: '0' max: '100' -webkit-appearance: none; -moz-appearance: none; `;
 
 interface Props {
   numAttr?: number,
@@ -39,7 +33,7 @@ const DoubleSlider: React.FC<Props> = (props) => {
   const dlSliderAttr = useAppSelector(selectDoubleSlider);
   const dispatch = useAppDispatch();
   // const [incrementAmount, setIncrementAmount] = useState('2');
-  console.log({dlSliderAttr})
+  // console.log({dlSliderAttr}) // Called all the time you interact with the sliders
 
   return (
     <>
@@ -68,6 +62,7 @@ const DoubleSlider: React.FC<Props> = (props) => {
             onChange={e => 
               setDoubleSliderMax(Math.max(minEdge, parseInt(e.target.value)))
             }
+            // onMouseUp={e => console.log("mouse going up, with e: ",e.target.value)} // works, but I suppose wouldn't work with phone applications... I would prefer to avoid using this.
           />
         </div>
         <br/>
