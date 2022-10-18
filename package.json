@@ -6,21 +6,38 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "build": "sass App.scss App.css"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "@reduxjs/toolkit": "^1.8.6",
+    "@types/faker": "^6.6.9",
+    "chart.js": "^3.9.1",
     "expo": "~46.0.13",
     "expo-status-bar": "~1.4.0",
-    "react": "18.0.0",
-    "react-dom": "18.0.0",
-    "react-native": "0.69.6",
-    "react-native-web": "~0.18.7"
+    "nouislider": "^15.6.1",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^4.3.1",
+    "react-dom": "^18.2.0",
+    "react-native": "^0.70.2",
+    "react-native-web": "~0.18.7",
+    "react-redux": "^8.0.4",
+    "redux": "^4.2.0",
+    "sass": "^1.55.0",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@types/react": "~18.0.14",
+    "@faker-js/faker": "^7.5.0",
+    "@types/react": "^18.0.21",
     "@types/react-native": "~0.69.1",
+    "@types/styled-components": "^5.1.26",
     "typescript": "~4.3.5"
+  },
+  "overrides": {
+    "@types/react": "^18.0.0"
   },
   "private": true
 }

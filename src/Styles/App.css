@@ -1,0 +1,54 @@
+.item1 {
+  grid-area: header;
+}
+
+.item2 {
+  grid-area: menu;
+}
+
+.item3 {
+  grid-area: main;
+}
+
+.item4 {
+  grid-area: right;
+}
+
+.item5 {
+  grid-area: footer;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: "header header header header header header" "menu menu menu main main  right" "menu menu menu footer footer footer";
+  gap: 10px;
+  background-color: #c2c9ce;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  overflow: hidden;
+}
+
+.App {
+  background-color: #e5e5e5;
+  padding: 2px;
+  font-size: 15px;
+  overflow: hidden;
+}
+
+.font-large {
+  font-size: 20px;
+}
+
+.font-small {
+  font-size: 10px;
+}
+
+.font-color-grey {
+  color: grey;
+}/*# sourceMappingURL=App.css.map */
