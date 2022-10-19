@@ -1,10 +1,12 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import doubleSliderReducer from '../features/DoubleSlider/DoubleSliderSlice';
+import selectionReducer from '../features/Selection/SelectionSlice';
 
 
 export const store = configureStore({
   reducer: {
     doubleSlider: doubleSliderReducer,
+    selection: selectionReducer,
   },
 })
 

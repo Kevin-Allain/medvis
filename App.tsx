@@ -14,6 +14,7 @@ import './src/Styles/App.css'
 import LineChart from './src/features/LineChart/LineChart';
 // import Slider from './src/Disregarded/Slider';
 import DoubleSlider from './src/features/DoubleSlider/DoubleSlider';
+import Selection from './src/features/Selection/Selection';
 
 import dataGenerated from './data/generated.json'
 import {Patient} from './src/interface/Patient'
@@ -48,9 +49,15 @@ export default function App() {
         </div>
         <div className="item2">
           <h3>Menu</h3>
+          <div id='selection'>
+            <Selection 
+              patients={patients}
+            />
+          </div>
+          <hr/>
           <DoubleSlider />
         </div>
-        <div className="item3">Main
+        <div className="item3">
           <div id="lineCharts">
             <LineChart
               options={undefined}

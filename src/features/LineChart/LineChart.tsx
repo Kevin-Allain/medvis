@@ -41,7 +41,7 @@ const LineChart: FC<LineChartProps> = ((props) => {
         plugins: {
             legend: { position: 'top' as const, },
             title: {
-                display: true, text: 'Chart.js Line Chart', },
+                display: true, text: `Patient ${(props.patients.length>0)?props.patients[0].name:'unnamed'}`, },
         },
     };
 
@@ -60,7 +60,9 @@ const LineChart: FC<LineChartProps> = ((props) => {
         datasets:datasets
     };
 
-    return <Line options={props.options} data={data} />;
+    return (<>
+        <Line options={options} data={data}></Line>
+    </>);
     }
 )
 
