@@ -52,6 +52,7 @@ export default function App() {
           <div id='selection'>
             <Selection 
               patients={patients}
+              patientsSelection={[0]}
             />
           </div>
           <hr/>
