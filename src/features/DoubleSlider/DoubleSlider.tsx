@@ -32,15 +32,19 @@ const DoubleSlider: React.FC<Props> = (props) => {
 
   const dlSliderAttr = useAppSelector(selectDoubleSlider);
   const dispatch = useAppDispatch();
-  // const [incrementAmount, setIncrementAmount] = useState('2');
-  // console.log({dlSliderAttr}) // Called all the time you interact with the sliders
+  // const [incrementAmount, setIncrementAmount] = useState('2'); // console.log({dlSliderAttr}) // Called all the time you interact with the sliders
 
   return (
     <>
       {/* <Input type="range" value={doubleSliderVal} onChange={e => doubleSliderSet(parseInt(e.target.value))} /> <div id="DoubleSliderInfo">The value selected is {doubleSliderVal}</div> */}
       <div className="wrapper">
         Value Range: Use slider or enter min and max value
-        <br/>The values with reducer are minEdge: {minEdge}, maxEdge: {maxEdge} and attrName: {dlSliderAttr.attrName}. minEdge: {dlSliderAttr.minEdge} <br/>
+        <br/>The values with reducer are minEdge: 
+          {minEdge}, maxEdge: {maxEdge} and 
+          attrName: {dlSliderAttr.attrName}. 
+          minEdge: {dlSliderAttr.minEdge} <br/>
+          Attribute here is: {dlSliderAttr.valueName}
+          <br/>
         <button
           className='button randomize'
           aria-label="Randomize name"

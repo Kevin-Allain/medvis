@@ -34,9 +34,7 @@ export default function App() {
 
   console.log(dataGenerated);
   console.log(attrList);
-  const lastPersonIndex: number = (dataGenerated.length - 1) | 0;
   console.log({ valueSlider })
-  console.log({patients})
 
   return <>
   <Provider store={store}>
@@ -52,24 +50,24 @@ export default function App() {
           <div id='selection'>
             <Selection 
               patients={patients}
-              patientsSelection={[0]}
+              // patientsSelection={[0,8]}
             />
           </div>
           <hr/>
           <DoubleSlider />
         </div>
         <div className="item3">
-          <div id="lineCharts">
+          <div id="lineCharts"> 
+          {/* will need to call the reducer for data */}
             <LineChart
-              options={undefined}
-              numLongitunal={0}
-              numLines={lastPersonIndex}
-              patients={patients}
+              // options={undefined}
+              // numLongitunal={0}
+              // numLines={lastPersonIndex}
+              // patients={patients}
               ></LineChart>
           </div>
         </div>
-        <div className="item4">Right
-        </div>
+        {/* <div className="item4">Right</div> */}
         <div className="item5">
           Footer
           <p>You clicked {count} times</p>

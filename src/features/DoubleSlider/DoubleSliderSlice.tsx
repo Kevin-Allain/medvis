@@ -6,6 +6,7 @@ export interface DoubleSliderState {
   minEdge: number;
   maxEdge: number;
   status: 'idle' | 'loading' | 'failed';
+  valueName: 'voluptate'|'aliquip'|'consectetur'|'laboris';
 }
 
 const initialState: DoubleSliderState = {
@@ -13,6 +14,7 @@ const initialState: DoubleSliderState = {
   minEdge: 0,
   maxEdge: 1000,
   status: 'idle',
+  valueName: 'voluptate'
 };
 
 export const doubleSliderSlice = createSlice({
@@ -21,10 +23,7 @@ export const doubleSliderSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
+      // Redux Toolkit allows us to write "mutating" logic in reducers. It doesn't actually mutate the state because it uses the Immer library, which detects changes to a "draft state" and produces a brand new immutable state based off those changes
       state.attrName = state.attrName.substr(0, state.attrName.indexOf('-') + 1) + (parseInt(state.attrName.substr(state.attrName.indexOf('-' + 1))) + 1);
       state.maxEdge += 1;
     },
