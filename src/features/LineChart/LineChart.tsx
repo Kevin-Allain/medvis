@@ -51,7 +51,7 @@ const LineChart: FC<LineChartProps> = ((props) => {
         console.log("Patient index: ",patient.index, " and is selected: ",(patientsSelection.includes(patient.index)));
         if (patientsSelection.includes(patient.index)){
             const labels = [...patient.medTests[0].listRecords.map(t => t.record)].sort();
-
+            // TODO verify that the display of values was sorted. I suppose it is not.
             const options = {
                 responsive: true,
                 plugins: {
