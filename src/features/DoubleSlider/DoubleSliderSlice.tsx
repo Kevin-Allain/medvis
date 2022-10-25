@@ -5,6 +5,8 @@ export interface DoubleSliderState {
   attrName: string;
   minEdge: number;
   maxEdge: number;
+  threshMin:number;
+  threshMax:number;
   status: 'idle' | 'loading' | 'failed';
   valueName: 'voluptate'|'aliquip'|'consectetur'|'laboris';
 }
@@ -13,6 +15,8 @@ const initialState: DoubleSliderState = {
   attrName: "default-0",
   minEdge: 0,
   maxEdge: 1000,
+  threshMin:0,
+  threshMax:1000,
   status: 'idle',
   valueName: 'voluptate'
 };

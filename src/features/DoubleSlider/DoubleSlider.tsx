@@ -43,14 +43,13 @@ const DoubleSlider: React.FC<Props> = (props) => {
           {minEdge}, maxEdge: {maxEdge} and 
           attrName: {dlSliderAttr.attrName}. 
           minEdge: {dlSliderAttr.minEdge} <br/>
-          Attribute here is: {dlSliderAttr.valueName}
           <br/>
         <button
           className='button randomize'
           aria-label="Randomize name"
           onClick={() => dispatch(randomize())}>Randomize</button>
         <br/><br/>
-        <div className = "attrIndic">medTestA<hr/></div>
+        <div className = "attrIndic">{dlSliderAttr.valueName}<hr/></div>
         <div className="slider">
           <div className="progress"></div>
         </div>

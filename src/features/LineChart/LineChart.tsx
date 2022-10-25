@@ -46,12 +46,10 @@ const LineChart: FC<LineChartProps> = ((props) => {
     const final = [];
     for (let patient of patients) {
         let datasets = [];
-
         // patient.medTests.forEach( l => l.listRecords = l.listRecords.sort( (u,v) => new Date(u.record).getTime() - new Date(v.record).getTime() ) )
         console.log("Patient index: ",patient.index, " and is selected: ",(patientsSelection.includes(patient.index)));
         if (patientsSelection.includes(patient.index)){
-            const labels = [...patient.medTests[0].listRecords.map(t => t.record)].sort();
-            // TODO verify that the display of values was sorted. I suppose it is not.
+            const labels = [...patient.medTests[0].listRecords.map(t => t.record)];
             const options = {
                 responsive: true,
                 plugins: {

@@ -11,19 +11,18 @@ import {
     setPatients
 } from './SelectionSlice';
 
-interface Props {
-    patients?:Array<Patient>,
-    patientsSelection?:Array<number>
-}
+// interface Props { patients?:Array<Patient>, patientsSelection?:Array<number> }
 
-const Selection: React.FC<Props> = (props) => {  
+const Selection: React.FC = () => {  
     const selectionAttr = useAppSelector(selectSelection);
     const dispatch = useAppDispatch();
     // let patientsList = (props.patients)?props.patients.forEach( a => <><li>a.Name</li></>):<></>
-    const patientsList: Array<Patient> = (props.patients)?props.patients:[];
-    // const patientsList = selectionAttr.patients; // let patientsSelection: Array<number> = (props.patientsSelection)?props.patientsSelection:[];
+    
+    // const patientsList: Array<Patient> = (props.patients)?props.patients:[];
+    
+    const patientsList = selectionAttr.patients; // let patientsSelection: Array<number> = (props.patientsSelection)?props.patientsSelection:[];
     const patientsSelection = selectionAttr.patientsSelection;
-
+    
     return <>
         <div id="selection">Selection</div>
         <ul>

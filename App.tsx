@@ -49,8 +49,7 @@ export default function App() {
           <h3>Menu</h3>
           <div id='selection'>
             <Selection 
-              patients={patients}
-              // patientsSelection={[0,8]}
+              // patients={patients}
             />
           </div>
           <hr/>
@@ -58,12 +57,7 @@ export default function App() {
         </div>
         <div className="item3">
           <div id="lineCharts"> 
-          {/* will need to call the reducer for data */}
-            <LineChart
-              // options={undefined}
-              // numLongitunal={0}
-              // numLines={lastPersonIndex}
-              // patients={patients}
+            <LineChart // options={undefined} // numLongitunal={0} // numLines={lastPersonIndex} // patients={patients}
               ></LineChart>
           </div>
         </div>
