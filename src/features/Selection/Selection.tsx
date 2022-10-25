@@ -8,7 +8,9 @@ import {
     selectSelection, 
     addSelection,
     removeSelection,
-    setPatients
+    setPatients,
+    addAllSelection,
+    removeAllSelection
 } from './SelectionSlice';
 
 // interface Props { patients?:Array<Patient>, patientsSelection?:Array<number> }
@@ -25,6 +27,10 @@ const Selection: React.FC = () => {
     
     return <>
         <div id="selection">Selection</div>
+        <p>
+            <button className='addAllSelection' onClick={()=> dispatch(addAllSelection()) }>Add all patients</button>  
+            <button className='removeAllSelection' onClick={()=> dispatch(removeAllSelection()) } >Remove all patients</button>
+        </p>
         <ul>
             {patientsList.map(item => {
                 // console.log({item});console.log(patientsSelection)

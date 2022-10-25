@@ -38,11 +38,8 @@ const DoubleSlider: React.FC<Props> = (props) => {
     <>
       {/* <Input type="range" value={doubleSliderVal} onChange={e => doubleSliderSet(parseInt(e.target.value))} /> <div id="DoubleSliderInfo">The value selected is {doubleSliderVal}</div> */}
       <div className="wrapper">
-        Value Range: Use slider or enter min and max value
-        <br/>The values with reducer are minEdge: 
-          {minEdge}, maxEdge: {maxEdge} and 
-          attrName: {dlSliderAttr.attrName}. 
-          minEdge: {dlSliderAttr.minEdge} <br/>
+        minEdge: {minEdge} | maxEdge: {maxEdge} | 
+          attrName: {dlSliderAttr.attrName} | minEdge (reducer): {dlSliderAttr.minEdge} <br/>
           <br/>
         <button
           className='button randomize'

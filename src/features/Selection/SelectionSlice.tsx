@@ -26,6 +26,12 @@ export const selectionSlice = createSlice({
         // console.log("addSelection in reducer."); console.log(state.patients, state.patientsSelection, action.payload)
         state.patientsSelection.push(action.payload)
       },
+      addAllSelection:(state) =>{
+        state.patientsSelection = state.patients.map( a => a.index ) ;
+      },
+      removeAllSelection:(state) =>{
+        state.patientsSelection = [];
+      },      
       removeSelection:(state, action: PayloadAction<number>)=>{
         state.patientsSelection = state.patientsSelection.filter( (v) => action.payload !== v)
         // [1,2,4,5,6,6,'a'].filter((v)=>v!==6786478678)
@@ -42,7 +48,7 @@ export const selectionSlice = createSlice({
     },
   });
     
-  export const { stuff, addSelection, removeSelection, setPatients, sortPatients } = selectionSlice.actions;
+  export const { stuff, addAllSelection, removeAllSelection, addSelection, removeSelection, setPatients, sortPatients } = selectionSlice.actions;
   
   export const selectSelection = 
     (state: RootState) => state.selection;

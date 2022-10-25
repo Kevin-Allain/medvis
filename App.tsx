@@ -44,6 +44,10 @@ export default function App() {
           <p className="font-large">
             Header
           </p>
+          <p>You clicked {count} times</p>
+          <button onClick={() => setCount(count + 1)}>
+            Click me
+          </button>
         </div>
         <div className="item2">
           <h3>Menu</h3>
@@ -62,13 +66,9 @@ export default function App() {
           </div>
         </div>
         {/* <div className="item4">Right</div> */}
-        <div className="item5">
+        {/* <div className="item5">
           Footer
-          <p>You clicked {count} times</p>
-          <button onClick={() => setCount(count + 1)}>
-            Click me
-          </button>
-        </div>
+        </div> */}
       </div>
     </div>
   </Provider>
