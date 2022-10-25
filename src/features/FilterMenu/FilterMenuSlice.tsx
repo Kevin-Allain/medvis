@@ -29,6 +29,24 @@ export interface FilterMenuState {
   };
 
 
+  const returnIndexValName = (stringTest:string, arrVer:Array<string>) => {
+    let indexThresh = -1;
+    switch (stringTest){
+      case 'voluptate':
+        indexThresh = arrVer.indexOf('voluptate');
+        break;
+      case 'aliquip':
+        indexThresh = arrVer.indexOf('aliquip');
+        break;
+      case 'consectetur':
+        indexThresh = arrVer.indexOf('consectetur');
+        break;
+      case 'laboris':
+        indexThresh = arrVer.indexOf('laboris');
+        break;
+    }
+    return indexThresh;
+  }
   
   export const filterMenuSlice = createSlice({
     name: 'filterMenu',
@@ -38,38 +56,37 @@ export interface FilterMenuState {
       // TODO alternative approach to array (Interface Props)
       incrementByAmount: (state, action: PayloadAction<[number,string]>) => {
         // state.attrName = state.attrName.substr(0, state.attrName.indexOf('-') + 1) + (parseInt(state.attrName.substr(state.attrName.indexOf('-' + 1))) + action.payload);
-        let indexThresh = -1;
-        switch (action.payload[1]){
-          case 'voluptate':
-            indexThresh = state.valueName.indexOf('voluptate');
-            break;
-          case 'aliquip':
-            indexThresh = state.valueName.indexOf('aliquip');
-            break;
-          case 'consectetur':
-            indexThresh = state.valueName.indexOf('consectetur');
-            break;
-          case 'laboris':
-            indexThresh = state.valueName.indexOf('laboris');
-            break;
-        }
+        let indexThresh = returnIndexValName(action.payload[1], state.valueName);
         if (indexThresh !== -1){
           state.minThreshold[indexThresh] += action.payload[0];
         }
       },
       // // randomize: (state, action: PayloadAction<void>) => { state.attrName = state.attrName.substr(0, state.attrName.indexOf('-') + 1) + Math.round(1000 * Math.random()); },
-      // changeMaxEdge: (state, action: PayloadAction<number>) => {
-      //   state.maxEdge = Math.max(state.minEdge,action.payload);
-      // },
-      // changeMinEdge: (state, action: PayloadAction<number>) => {
-      //   state.minEdge = Math.min(state.maxEdge,action.payload);
-      // },
-      // changeMaxThreshold: (state, action: PayloadAction<number>) => {
-      //   state.maxThreshold = action.payload;
-      // },
-      // changeMinThreshold: (state, action: PayloadAction<number>) => {
-      //   state.minThreshold = action.payload;
-      // },
+      changeMaxEdge: (state, action: PayloadAction<[number,string]>) => {
+        let indexThresh = returnIndexValName(action.payload[1], state.valueName);
+        if (indexThresh !== -1){
+          state.maxEdge[indexThresh] = action.payload[0];
+        }
+      },
+      changeMinEdge: (state, action: PayloadAction<[number,string]>) => {
+        let indexThresh = returnIndexValName(action.payload[1], state.valueName);
+        if (indexThresh !== -1){
+          state.minEdge[indexThresh] = action.payload[0];
+        }
+      },
+      changeMaxThreshold: (state, action: PayloadAction<[number,string]>) => {
+        let indexThresh = returnIndexValName(action.payload[1], state.valueName);
+        if (indexThresh !== -1){
+          state.maxThreshold[indexThresh] = action.payload[0];
+        }
+      },
+      changeMinThreshold: (state, action: PayloadAction<[number,string]>) => {
+        let indexThresh = returnIndexValName(action.payload[1], state.valueName);
+        if (indexThresh !== -1){
+          state.minThreshold[indexThresh] = action.payload[0];
+        }
+      },
+      // TODO maybe?
       // setValueName: (state, action: PayloadAction<string>) => {
       //   state.valueName = (action.payload==="a")?'voluptate':(action.payload==="b")?'aliquip':(action.payload==="c")?'consectetur':'laboris';
       // }
@@ -80,7 +97,7 @@ export interface FilterMenuState {
     
   export const { 
     incrementByAmount, 
-    // changeMaxEdge, changeMinEdge, changeMaxThreshold, changeMinThreshold 
+    changeMaxEdge, changeMinEdge, changeMaxThreshold, changeMinThreshold 
   } = filterMenuSlice.actions;
   
   // The function below is called a selector and allows us to select a value from
