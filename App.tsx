@@ -14,7 +14,7 @@ import './src/Styles/App.css'
 import LineChart from './src/features/LineChart/LineChart';
 // import Slider from './src/Disregarded/Slider';
 import DoubleSlider from './src/features/DoubleSlider/DoubleSlider';
-import DoubleSliders from './src/features/DoubleSliders/DoubleSliders';
+import DoubleSliders from './src/features/FilterMenu/FilterMenu';
 import Selection from './src/features/Selection/Selection';
 
 import dataGenerated from './data/generated.json'
