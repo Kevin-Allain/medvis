@@ -47,9 +47,9 @@ export const selectionSlice = createSlice({
       }
     },
   });
-    
+
   export const { stuff, addAllSelection, removeAllSelection, addSelection, removeSelection, setPatients, sortPatients } = selectionSlice.actions;
-  
+
   export const selectSelection = 
     (state: RootState) => state.selection;
 

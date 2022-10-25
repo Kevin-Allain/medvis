@@ -14,6 +14,7 @@ import './src/Styles/App.css'
 import LineChart from './src/features/LineChart/LineChart';
 // import Slider from './src/Disregarded/Slider';
 import DoubleSlider from './src/features/DoubleSlider/DoubleSlider';
+import DoubleSliders from './src/features/DoubleSliders/DoubleSliders';
 import Selection from './src/features/Selection/Selection';
 
 import dataGenerated from './data/generated.json'
@@ -57,7 +58,8 @@ export default function App() {
             />
           </div>
           <hr/>
-          <DoubleSlider />
+          <DoubleSliders></DoubleSliders>
+          {/* <DoubleSlider /> <DoubleSlider /> <DoubleSlider /> <DoubleSlider /> */}
         </div>
         <div className="item3">
           <div id="lineCharts"> 

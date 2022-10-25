@@ -12,7 +12,7 @@ import '../../Styles/LineChart.css'
 
 import {
     decrement, increment, incrementByAmount,
-    randomize, selectDoubleSlider,
+    selectDoubleSlider,
 } from '../DoubleSlider/DoubleSliderSlice';
 import { selectSelection, sortPatients } from '../Selection/SelectionSlice';
 
@@ -35,7 +35,7 @@ const LineChart: FC<LineChartProps> = ((props) => {
     // patients.forEach( a=> a.medTests.forEach( l => l.listRecords = l.listRecords.sort( (u,v) => new Date(u.record).getTime() - new Date(v.record).getTime()  ) ));
 
     const dlSliderAttr = useAppSelector(selectDoubleSlider);
-    console.log("inside LineChart: ", dlSliderAttr);
+    // console.log("inside LineChart: ", dlSliderAttr);
 
     // const firstRecD = (props.patients)?[... props.patients[0].medTests.map( s => [...s.listRecords.map(t => t.record)]) ].map(q => q.map(r=>new Date(r)) ):undefined;
     // const labels = (firstRecD)? (firstRecD[0].sort( (a,b)=>a.getTime()-b.getTime()) ) : ['1','2','3'];
@@ -43,11 +43,14 @@ const LineChart: FC<LineChartProps> = ((props) => {
     // const dispatch = useAppDispatch();
     // dispatch(sortPatients);
 
+    console.log(dlSliderAttr.valueName,dlSliderAttr.minThreshold,dlSliderAttr.maxThreshold)
+
     const final = [];
     for (let patient of patients) {
         let datasets = [];
         // patient.medTests.forEach( l => l.listRecords = l.listRecords.sort( (u,v) => new Date(u.record).getTime() - new Date(v.record).getTime() ) )
-        console.log("Patient index: ",patient.index, " and is selected: ",(patientsSelection.includes(patient.index)));
+        // console.log("Patient index: ",patient.index, " and is selected: ",(patientsSelection.includes(patient.index)));
+
         if (patientsSelection.includes(patient.index)){
             const labels = [...patient.medTests[0].listRecords.map(t => t.record)];
             const options = {
