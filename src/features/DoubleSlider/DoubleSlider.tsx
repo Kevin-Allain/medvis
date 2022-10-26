@@ -10,6 +10,16 @@ import {
   changeMaxThreshold, changeMinThreshold
 } from './DoubleSliderSlice';
 
+import {
+  // decrement, increment, 
+  selectFilterMenu,
+  incrementByAmountMenu,
+  changeMaxEdgeMenu, changeMinEdgeMenu, 
+  changeMaxThresholdMenu, changeMinThresholdMenu
+} from '../FilterMenu/FilterMenuSlice';
+
+
+
 const Input = styled.input` border-radius: 6px; min: '0' max: '100' -webkit-appearance: none; -moz-appearance: none; `;
 
 interface Props {
@@ -24,21 +34,26 @@ const DoubleSlider: React.FC<Props> = (props) => {
   const dlSliderAttr = useAppSelector(selectDoubleSlider);
   const dispatch = useAppDispatch();
 
+  const filterMenuAttr = useAppSelector(selectFilterMenu);
+  const valueName = props.valueName;
+
+  // TODO index needs to adapt according to valueName provided
+  const indexName = 0;
+
   return (
     <>
       {/* <Input type="range" value={doubleSliderVal} onChange={e => doubleSliderSet(parseInt(e.target.value))} /> <div id="DoubleSliderInfo">The value selected is {doubleSliderVal}</div> */}
       <div className="wrapper">
-        {/* minEdge: {minEdge} | maxEdge: {maxEdge} <br/> */}
-          minEdge (reducer): {dlSliderAttr.minEdge} | maxEdge (reducer): {dlSliderAttr.maxEdge} <br/>
+          minEdge (reducer): {filterMenuAttr.minEdge[indexName]} | maxEdge (reducer): {filterMenuAttr.maxEdge[indexName]} <br/>
         {/* <button className='button randomize' aria-label="Randomize name" onClick={() => dispatch(randomize())}>Randomize</button> */}
-        <div className = "attrIndic">{dlSliderAttr.valueName}</div>
+        <div className = "attrIndic">{valueName}</div>
         <br/>
         <div className="slider">
           <div className="progress"></div>
         </div>
         <div className="range-input">
-          <Input type="range" className="range-min" min={String(dlSliderAttr.minEdge)} max={String(dlSliderAttr.maxEdge)} step={String(doubleSliderStep)}
-            value={dlSliderAttr.minThreshold}
+          <Input type="range" className="range-min" min={String(filterMenuAttr.minEdge[indexName])} max={String(filterMenuAttr.maxEdge[indexName])} step={String(doubleSliderStep)}
+            value={filterMenuAttr.minThreshold[indexName]}
             onChange={e => 
               // setDoubleSliderMin(Math.min(maxEdge, parseInt(e.target.value)))
               dispatch(changeMinThreshold(parseInt(e.target.value)))

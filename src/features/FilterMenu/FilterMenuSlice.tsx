@@ -28,10 +28,10 @@ export interface FilterMenuState {
     patients : patients,
   };
 
-
-  const returnIndexValName = (stringTest:string, arrVer:Array<string>) => {
+  // verify according to stringVer what is the valueName of medical test and identify index in arrays of values
+  const returnIndexValName = (stringVer:string, arrVer:Array<string>) => {
     let indexThresh = -1;
-    switch (stringTest){
+    switch (stringVer){
       case 'voluptate':
         indexThresh = arrVer.indexOf('voluptate');
         break;
@@ -54,7 +54,7 @@ export interface FilterMenuState {
     reducers: {
       // // Use the PayloadAction type to declare the contents of `action.payload`
       // TODO alternative approach to array (Interface Props)
-      incrementByAmount: (state, action: PayloadAction<[number,string]>) => {
+      incrementByAmountMenu: (state, action: PayloadAction<[number,string]>) => {
         // state.attrName = state.attrName.substr(0, state.attrName.indexOf('-') + 1) + (parseInt(state.attrName.substr(state.attrName.indexOf('-' + 1))) + action.payload);
         let indexThresh = returnIndexValName(action.payload[1], state.valueName);
         if (indexThresh !== -1){
@@ -62,25 +62,25 @@ export interface FilterMenuState {
         }
       },
       // // randomize: (state, action: PayloadAction<void>) => { state.attrName = state.attrName.substr(0, state.attrName.indexOf('-') + 1) + Math.round(1000 * Math.random()); },
-      changeMaxEdge: (state, action: PayloadAction<[number,string]>) => {
+      changeMaxEdgeMenu: (state, action: PayloadAction<[number,string]>) => {
         let indexThresh = returnIndexValName(action.payload[1], state.valueName);
         if (indexThresh !== -1){
           state.maxEdge[indexThresh] = action.payload[0];
         }
       },
-      changeMinEdge: (state, action: PayloadAction<[number,string]>) => {
+      changeMinEdgeMenu: (state, action: PayloadAction<[number,string]>) => {
         let indexThresh = returnIndexValName(action.payload[1], state.valueName);
         if (indexThresh !== -1){
           state.minEdge[indexThresh] = action.payload[0];
         }
       },
-      changeMaxThreshold: (state, action: PayloadAction<[number,string]>) => {
+      changeMaxThresholdMenu: (state, action: PayloadAction<[number,string]>) => {
         let indexThresh = returnIndexValName(action.payload[1], state.valueName);
         if (indexThresh !== -1){
           state.maxThreshold[indexThresh] = action.payload[0];
         }
       },
-      changeMinThreshold: (state, action: PayloadAction<[number,string]>) => {
+      changeMinThresholdMenu: (state, action: PayloadAction<[number,string]>) => {
         let indexThresh = returnIndexValName(action.payload[1], state.valueName);
         if (indexThresh !== -1){
           state.minThreshold[indexThresh] = action.payload[0];
@@ -96,8 +96,8 @@ export interface FilterMenuState {
   });
     
   export const { 
-    incrementByAmount, 
-    changeMaxEdge, changeMinEdge, changeMaxThreshold, changeMinThreshold 
+    incrementByAmountMenu, 
+    changeMaxEdgeMenu, changeMinEdgeMenu, changeMaxThresholdMenu, changeMinThresholdMenu 
   } = filterMenuSlice.actions;
   
   // The function below is called a selector and allows us to select a value from

@@ -6,6 +6,7 @@ import DoubleSlider from '../DoubleSlider/DoubleSlider';
 import { selectFilterMenu } from './FilterMenuSlice';
 
 
+
 interface Props {
     // numAttr?: number, // value?: number, // valSelecMin?: number | null, // valSelecMax?: number | null, // min?: number, // max?: number, // attrName?:string, // onChange?: (e: any) => void
     step?: number,
@@ -22,8 +23,6 @@ const FilterMenu: React.FC<Props> = (props) => {
     useEffect(() => {
 
     }, []); // <- add empty brackets here
-    
-    
 
     return (
         <>

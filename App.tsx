@@ -14,11 +14,11 @@ import './src/Styles/App.css'
 import LineChart from './src/features/LineChart/LineChart';
 // import Slider from './src/Disregarded/Slider';
 import DoubleSlider from './src/features/DoubleSlider/DoubleSlider';
-import DoubleSliders from './src/features/FilterMenu/FilterMenu';
 import Selection from './src/features/Selection/Selection';
 
 import dataGenerated from './data/generated.json'
 import {Patient} from './src/interface/Patient'
+import FilterMenu from './src/features/FilterMenu/FilterMenu';
 
 const patients = dataGenerated as Patient[];
 
@@ -58,7 +58,9 @@ export default function App() {
             />
           </div>
           <hr/>
-          <DoubleSliders></DoubleSliders>
+          <FilterMenu></FilterMenu>
+          <hr/>
+          <DoubleSlider />
           {/* <DoubleSlider /> <DoubleSlider /> <DoubleSlider /> <DoubleSlider /> */}
         </div>
         <div className="item3">
