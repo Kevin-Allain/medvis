@@ -38,8 +38,10 @@ const DoubleSlider: React.FC<Props> = (props) => {
   const valueName = props.valueName;
 
   // TODO index needs to adapt according to valueName provided
-  const indexName = 0;
+  const indexName = (valueName==='voluptate')?0:(valueName==='aliquip')?1:(valueName==='consectetur')?2:(valueName==='laboris')?3:-1;
 
+  console.log({valueName,indexName})
+  
   return (
     <>
       {/* <Input type="range" value={doubleSliderVal} onChange={e => doubleSliderSet(parseInt(e.target.value))} /> <div id="DoubleSliderInfo">The value selected is {doubleSliderVal}</div> */}
@@ -56,21 +58,21 @@ const DoubleSlider: React.FC<Props> = (props) => {
             value={filterMenuAttr.minThreshold[indexName]}
             onChange={e => 
               // setDoubleSliderMin(Math.min(maxEdge, parseInt(e.target.value)))
-              dispatch(changeMinThreshold(parseInt(e.target.value)))
+              dispatch(changeMinThresholdMenu([parseInt(e.target.value), (valueName)?valueName:''] ))
             }
           />
-          <Input type="range" className="range-max" min={String(dlSliderAttr.minEdge)} max={String(dlSliderAttr.maxEdge)} step={String(doubleSliderStep)}
-            value={dlSliderAttr.maxThreshold}
+          <Input type="range" className="range-max" min={String(filterMenuAttr.minEdge[indexName])} max={String(filterMenuAttr.maxEdge[indexName])} step={String(doubleSliderStep)}
+            value={filterMenuAttr.maxThreshold[indexName]}
             onChange={e => 
               // setDoubleSliderMax(Math.max(minEdge, parseInt(e.target.value)))
-              dispatch(changeMaxThreshold(parseInt(e.target.value)))
+              dispatch(changeMaxThresholdMenu([parseInt(e.target.value), (valueName)?valueName:''] ))
             }
             // onMouseUp={e => console.log("mouse going up, with e: ",e.target.value)} // works, but I suppose wouldn't work with phone applications... I would prefer to avoid using this.
           />
         </div>
         <br/>
         <div className="communicateSlider">
-          The double slider selection is {dlSliderAttr.minThreshold} and {dlSliderAttr.maxThreshold}.
+          The double slider selection is {filterMenuAttr.minThreshold[indexName]} and {filterMenuAttr.maxThreshold[indexName]}.
         </div>
 
       </div>
