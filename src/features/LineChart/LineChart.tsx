@@ -15,6 +15,7 @@ import { decrement, increment, incrementByAmount,
 } from '../DoubleSlider/DoubleSliderSlice';
 import { selectSelection, sortPatients } from '../Selection/SelectionSlice';
 import { changeMaxEdgeMenu, changeMinEdgeMenu, changeMaxThresholdMenu, changeMinThresholdMenu, selectFilterMenu, } from '../FilterMenu/FilterMenuSlice';
+import { LocationDisabledRounded } from '@material-ui/icons';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -46,6 +47,7 @@ const LineChart: FC<LineChartProps> = ((props) => {
     // const dispatch = useAppDispatch();
     // dispatch(sortPatients);
 
+    console.log("========");
     console.log(dlSliderAttr.valueName,dlSliderAttr.minThreshold,dlSliderAttr.maxThreshold)
     const filterMenuAttr = useAppSelector(selectFilterMenu);
 
@@ -74,8 +76,24 @@ const LineChart: FC<LineChartProps> = ((props) => {
         // patient.medTests.forEach( l => l.listRecords = l.listRecords.sort( (u,v) => new Date(u.record).getTime() - new Date(v.record).getTime() ) )
         // console.log("Patient index: ",patient.index, " and is selected: ",(patientsSelection.includes(patient.index)));
 
+
+
         if (patientsSelection.includes(patient.index)){
-            const labels = [...patient.medTests[0].listRecords.map(t => t.record)];
+
+            // 1 -> what are the listRecords to filter, according to filterMenu
+            let recordsFilter : string[] = [];
+            for (let i = 0; i < patient.medTests.length; i++) {
+                recordsFilter = recordsFilter.concat([... patient.medTests[i].listRecords
+                    .filter(a => a.score<filterMenuAttr.minThreshold[i] || a.score>filterMenuAttr.maxThreshold[i] )
+                    .map(a => a.record)]);
+            }
+            console.log({recordsFilter});
+            // 2 -> remove them from labels
+            // 3 -> load the data with filters for data that doesn't match
+
+            const labels = [...patient.medTests[0].listRecords.filter(a => !recordsFilter.includes(a.record)).map(t => t.record)];
+            console.log({labels});
+
             const options = {
                 responsive: true,
                 plugins: {
@@ -86,14 +104,32 @@ const LineChart: FC<LineChartProps> = ((props) => {
                 },
             };
             for (let i = 0; i < patient.medTests.length; i++) {
+                let iterData = []
+                for (let pm in patient.medTests){
+                    for (let pmd in patient.medTests[pm].listRecords){
+                        iterData.push( {x:patient.medTests[pm].listRecords[pmd].record, y : patient.medTests[pm].listRecords[pmd].score})
+                    }
+                }
+                console.log("-- iterData: ",iterData);
+
                 datasets.push({
                     label: `Dataset ${patient.medTests[i].testName}`,
-                    data: [...patient.medTests[i].listRecords.filter(a => a.score>=filterMenuAttr.minThreshold[i] && a.score<=filterMenuAttr.maxThreshold[i] ).map(a => a.score)],
+                    data: 
+                    [{"x":"2014-01-23T08:05:37","y":69},{"x":"2014-03-01T11:37:13","y":60},{"x":"2015-04-05T08:54:11","y":115},{"x":"2015-11-14T06:54:39","y":51},{"x":"2016-08-15T04:53:39","y":89},{"x":"2016-12-14T01:04:02","y":102},{"x":"2017-09-18T06:00:38","y":58},{"x":"2020-04-06T07:43:08","y":60},{"x":"2021-03-17T02:40:08","y":73},{"x":"2021-03-29T10:46:43","y":53},{"x":"2021-04-05T04:54:01","y":94},{"x":"2022-04-18T08:37:55","y":78},{"x":"2015-07-04T10:14:44","y":64},{"x":"2015-09-24T01:19:26","y":55},{"x":"2015-12-03T11:35:06","y":50},{"x":"2016-09-14T12:25:16","y":62},{"x":"2016-12-07T06:46:18","y":88},{"x":"2017-06-17T06:02:04","y":78},{"x":"2019-04-07T07:57:56","y":69},{"x":"2019-11-06T01:40:00","y":77},{"x":"2020-05-26T03:16:51","y":69},{"x":"2020-08-06T12:46:54","y":39},{"x":"2020-11-24T02:45:59","y":66},{"x":"2021-10-09T04:39:29","y":64},{"x":"2014-01-05T07:25:11","y":48},{"x":"2015-05-15T02:13:43","y":58},{"x":"2016-11-22T06:37:14","y":78},{"x":"2017-02-08T07:07:28","y":128},{"x":"2017-10-19T11:31:49","y":68},{"x":"2018-07-25T04:00:21","y":57},{"x":"2018-12-19T06:16:31","y":60},{"x":"2019-03-24T12:21:54","y":78},{"x":"2019-09-23T07:19:05","y":43},{"x":"2020-06-21T01:06:27","y":95},{"x":"2021-08-21T08:17:57","y":44},{"x":"2022-08-15T11:46:10","y":70},{"x":"2015-01-08T05:44:31","y":61},{"x":"2017-07-01T01:23:45","y":60},{"x":"2017-11-28T08:35:01","y":115},{"x":"2017-12-11T01:34:19","y":65},{"x":"2019-05-11T05:47:31","y":62},{"x":"2019-06-30T08:51:13","y":68},{"x":"2019-07-24T02:10:03","y":63},{"x":"2020-03-28T08:37:44","y":69},{"x":"2020-08-31T09:14:24","y":94},{"x":"2022-02-05T08:56:26","y":65},{"x":"2022-07-11T06:38:00","y":74},{"x":"2022-08-17T04:26:32","y":65}],
+                    // [...patient.medTests[i].listRecords
+                    // .filter(a => !recordsFilter.includes(a.record)
+                    //     // a.score>=filterMenuAttr.minThreshold[i] && a.score<=filterMenuAttr.maxThreshold[i] 
+                    //     )
+                    // .map((a,indx) => {x:indx ; y:a.score})], 
                     borderColor: `rgb(${(i + 3) * 700 % 255}, ${(i + 1) * 200 % 255}, ${(i + 1) * 400 % 255})`,
                     backgroundColor: `rgba(${(i + 3) * 700 % 255}, ${(i + 1) * 200 % 255}, ${(i + 1) * 400 % 255}, 0.5)`,
                 })
             }
-            const data = { labels, datasets: datasets };
+
+            // datasets[0].data[0]={x:'timeManual',y:100};
+            console.log({datasets})
+            // const data = { labels, datasets: datasets };
+            const data = { datasets: datasets };            
             final.push(<li key={patient.name}> <Line options={options} data={data}></Line> </li>);
         }
     }
