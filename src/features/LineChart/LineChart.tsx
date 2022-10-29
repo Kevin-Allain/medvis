@@ -24,10 +24,9 @@ type LineChartProps = {
     // options?: _DeepPartialObject<CoreChartOptions<"line"> & ElementChartOptions<"line"> & PluginChartOptions<"line"> & DatasetChartOptions<"line"> & ScaleChartOptions<"line"> & LineControllerChartOptions> | undefined; // numLongitunal?: number; // patients?:Array<Patient>; // numLines:number; // labels: (number|string)[] | undefined; // data: ChartData<"line", (number | ScatterDataPoint | null)[], unknown> | null;    
 }
 
-const linearInterpolate = (before: number, after: number, atPoint: number) => {
-    return before + (after - before) * atPoint;
-};
+const linearInterpolate = (before: number, after: number, atPoint: number) => { return before + (after - before) * atPoint; };
 
+const numCols = 2;
 
 const LineChart: FC<LineChartProps> = ((props) => {
 
@@ -41,6 +40,8 @@ const LineChart: FC<LineChartProps> = ((props) => {
     const filterMenuAttr = useAppSelector(selectFilterMenu);
 
     const final = [];
+    const final1 = [], final2=[];
+
     for (let patient of patients) {
         let datasets = [];
         if (patientsSelection.includes(patient.index)) {
@@ -84,13 +85,63 @@ const LineChart: FC<LineChartProps> = ((props) => {
                 plugins: { legend: { position: 'top' as const, }, title: { display: true, text: `Patient ${patient.name}`, },},
             };
             const data = { labels , datasets: datasets };
-            final.push(<li key={patient.name}> <Line options={options} data={data}></Line></li>);
+            // final.push(
+            //     <li key={patient.name}> 
+            //         <Line options={options} data={data}></Line>
+            //     </li>
+            // );
+
+            // ---- Attempt to make prettier 
+            // // final.push(  )
+            // console.log({patientsSelection});
+            // // TODO wrong still but trying to see how we can make it work
+            // (patientsSelection.length % numCols === 0)?
+            //     final.push(
+            //         <tr className='rowChart'>
+            //             <th className='columnChart' key={'_'+patient.name}>
+            //             <Line options={options} data={data}></Line>
+            //             </th>
+            //         </tr>
+            //     )
+            //     : final.push(
+            //         <th className='columnChart' key={'_'+patient.name}>
+            //         <Line options={options} data={data}></Line>
+            //         </th>
+            //     )
+            console.log( "patient.index: ", patient.index, " % numCols === 0 ", (patient.index % numCols ===0));
+            (patient.index % numCols === 0)?
+            final1.push(
+                    <Line key={patient.name} options={options} data={data}></Line>
+            ) : 
+            final2.push(
+                <Line key={patient.name} options={options} data = {data}></Line>
+            )
+
         }
     }
 
+    // return (<>
+    //     <ul className='no-bullets' >{final}</ul>
+    // </>);
+
+    // ---- Attempt to make something prettier
+    // return (<>
+    //     <table>
+    //         <tbody>{final}</tbody>
+    //     </table>
+    // </>);
+
+    let structHTML = <div id="grid">
+    <div className="head1" id='head1'>{final1}</div>
+    <div className="head2" id='head2'>{final2}</div>
+    </div>
+
+    console.log({structHTML, final1,final2})
+
     return (<>
-        <ul className='no-bullets' >{final}</ul>
-    </>);
+        {structHTML}
+    </>)
+
 }
 )
 

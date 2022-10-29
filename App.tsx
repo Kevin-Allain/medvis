@@ -30,8 +30,7 @@ export default function App() {
   const [attrList, setattrList] = useState((dataGenerated) ? Object.keys(dataGenerated[0]) : []);
   console.log("In the App");
 
-  // useless for now...?
-  useEffect(() => { document.title = `You clicked ${count} times`; }, [count]);
+  // useEffect(() => { document.title = `You clicked ${count} times`; }, [count]);
 
   console.log(dataGenerated);
   console.log(attrList);
@@ -41,27 +40,14 @@ export default function App() {
   <Provider store={store}>
     <div className="App">
       <div className="grid-container">
-        <div className="item1">
-          <p className="font-large">
-            Header
-          </p>
-          <p>You clicked {count} times</p>
-          <button onClick={() => setCount(count + 1)}>
-            Click me
-          </button>
-        </div>
+        {/* <div className="item1"> <p className="font-large"> Header </p> <p>You clicked {count} times</p> <button onClick={() => setCount(count + 1)}> Click me </button> </div> */}
         <div className="item2">
           <h3>Menu</h3>
           <div id='selection'>
-            <Selection 
-              // patients={patients}
-            />
+            <Selection/>
           </div>
           <hr/>
           <FilterMenu></FilterMenu>
-          {/* <hr/> */}
-          {/* <DoubleSlider /> */}
-          {/* <DoubleSlider /> <DoubleSlider /> <DoubleSlider /> <DoubleSlider /> */}
         </div>
         <div className="item3">
           <div id="lineCharts"> 
