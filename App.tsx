@@ -59,8 +59,8 @@ export default function App() {
           </div>
           <hr/>
           <FilterMenu></FilterMenu>
-          <hr/>
-          <DoubleSlider />
+          {/* <hr/> */}
+          {/* <DoubleSlider /> */}
           {/* <DoubleSlider /> <DoubleSlider /> <DoubleSlider /> <DoubleSlider /> */}
         </div>
         <div className="item3">
