@@ -7,19 +7,17 @@ import { selectFilterMenu } from './FilterMenuSlice';
 
 
 
-interface Props {
-    // numAttr?: number, // value?: number, // valSelecMin?: number | null, // valSelecMax?: number | null, // min?: number, // max?: number, // attrName?:string, // onChange?: (e: any) => void
-    step?: number,
-    arrAttr?:[string]
-  }
+// interface Props {
+//     // numAttr?: number, // value?: number, // valSelecMin?: number | null, // valSelecMax?: number | null, // min?: number, // max?: number, // attrName?:string, // onChange?: (e: any) => void
+//     step?: number,
+//     arrAttr?:[string]
+//   }
   
 
-const FilterMenu: React.FC<Props> = (props) => {
-    const arrAttr = props.arrAttr;
-
+const FilterMenu: React.FC = () => {
+    // const arrAttr = props.arrAttr;
     const selectionAttr = useAppSelector(selectFilterMenu);
     const dispatch = useAppDispatch();
-
 
 
     useEffect(() => {

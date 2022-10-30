@@ -8,12 +8,9 @@ import { Line } from 'react-chartjs-2';
 import { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './src/app/store';
-import styled from 'styled-components';
 
 import './src/Styles/App.css'
 import LineChart from './src/features/LineChart/LineChart';
-// import Slider from './src/Disregarded/Slider';
-import DoubleSlider from './src/features/DoubleSlider/DoubleSlider';
 import Selection from './src/features/Selection/Selection';
 
 import dataGenerated from './data/generated.json'
@@ -46,19 +43,16 @@ export default function App() {
           <div id='selection'>
             <Selection/>
           </div>
-          <hr/>
+          {/* <hr/> */}
           <FilterMenu></FilterMenu>
         </div>
         <div className="item3">
           <div id="lineCharts"> 
-            <LineChart // options={undefined} // numLongitunal={0} // numLines={lastPersonIndex} // patients={patients}
-              ></LineChart>
+            <LineChart></LineChart>
           </div>
         </div>
         {/* <div className="item4">Right</div> */}
-        {/* <div className="item5">
-          Footer
-        </div> */}
+        {/* <div className="item5"> Footer </div> */}
       </div>
     </div>
   </Provider>
