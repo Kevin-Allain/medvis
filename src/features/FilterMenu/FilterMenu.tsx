@@ -19,18 +19,18 @@ const FilterMenu: React.FC = () => {
     const selectionAttr = useAppSelector(selectFilterMenu);
     const dispatch = useAppDispatch();
 
+    const filterMenuAttr = useAppSelector(selectFilterMenu);
+    const medTests = filterMenuAttr.patients[0].medTests.map(m => m.testName);
 
-    useEffect(() => {
+    let final = [];
+    for (let i in medTests){
+        let str = medTests[i];
+        if (str==='aliquip'||str==='consectetur'||str==='laboris'||str==='voluptate'){final.push(<DoubleSlider key={str} valueName={str} ></DoubleSlider>)}
+    }
 
-    }, []); // <- add empty brackets here
-
-    // TODO this approach is dirty and we need to set a reducer for the local JSON (e.g. https://stackoverflow.com/questions/56810264/how-can-i-access-a-local-json-file-with-redux-to-use-throughout-my-react-app)
     return (
         <>
-            <DoubleSlider valueName='voluptate'></DoubleSlider>
-            <DoubleSlider valueName='aliquip'></DoubleSlider>
-            <DoubleSlider valueName='consectetur'></DoubleSlider>
-            <DoubleSlider valueName='laboris'></DoubleSlider>            
+            {final}
         </>
     );
 }

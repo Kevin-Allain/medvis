@@ -6,8 +6,7 @@ import { Line } from 'react-chartjs-2';
 import { FC, useState } from 'react';
 import { _DeepPartialObject } from 'chart.js/types/utils';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-
-import '../../Styles/LineChart.css'
+import '../../Styles/LineChart.css';
 
 import {
     decrement, increment, incrementByAmount,
@@ -23,7 +22,8 @@ type LineChartProps = {
     // options?: _DeepPartialObject<CoreChartOptions<"line"> & ElementChartOptions<"line"> & PluginChartOptions<"line"> & DatasetChartOptions<"line"> & ScaleChartOptions<"line"> & LineControllerChartOptions> | undefined; // numLongitunal?: number; // patients?:Array<Patient>; // numLines:number; // labels: (number|string)[] | undefined; // data: ChartData<"line", (number | ScatterDataPoint | null)[], unknown> | null;    
 }
 
-const linearInterpolate = (before: number, after: number, atPoint: number) => { return before + (after - before) * atPoint; };
+export const linearInterpolate = (before: number, after: number, atPoint: number) => { return before + (after - before) * atPoint; };
+export const sumTest = (a:number,b:number) => { return a+b ;};
 
 const numCols = 2;
 
