@@ -7,6 +7,15 @@ import dataGenerated from '../../../data/generated.json'
 
 const patients = dataGenerated as Patient[];
 
+let maxEdge_voluptate = 0, maxEdge_aliquip = 0, maxEdge_consectetur = 0, maxEdge_laboris = 0;
+let arrconcat_voluptate: number [] = [], arrconcat_aliquip: number[] = [], arrconcat_consectetur:number[] = [], arrconcat_laboris:number[] = [];
+patients.map(p => p.medTests.map( m=> (m.testName==='voluptate')? arrconcat_voluptate = arrconcat_voluptate.concat( [... m.listRecords.map(r => r.score)] )
+    : (m.testName==='aliquip')? arrconcat_aliquip = arrconcat_aliquip.concat( [... m.listRecords.map(r => r.score)]) 
+    : (m.testName==='consectetur')? arrconcat_consectetur = arrconcat_consectetur.concat( [... m.listRecords.map(r => r.score)]) 
+    :  arrconcat_laboris = arrconcat_laboris.concat( [... m.listRecords.map(r => r.score)]) 
+    ) )
+maxEdge_voluptate=Math.max(...arrconcat_voluptate), maxEdge_aliquip=Math.max(...arrconcat_aliquip), maxEdge_consectetur=Math.max(...arrconcat_consectetur), maxEdge_laboris=Math.max(...arrconcat_laboris);
+
 
 export interface FilterMenuState {
     minEdge: Array<number>;
@@ -20,9 +29,9 @@ export interface FilterMenuState {
 
   const initialState: FilterMenuState = {
     minEdge: [0,0,0,0],
-    maxEdge: [1000,1000,1000,1000],
+    maxEdge: [maxEdge_voluptate,maxEdge_aliquip,maxEdge_consectetur,maxEdge_laboris],
     minThreshold: [0,0,0,0],
-    maxThreshold: [1000,1000,1000,1000],
+    maxThreshold: [maxEdge_voluptate,maxEdge_aliquip,maxEdge_consectetur,maxEdge_laboris],
     // status: 'idle',
     valueName: ['voluptate','aliquip','consectetur','laboris'],
     patients : patients,

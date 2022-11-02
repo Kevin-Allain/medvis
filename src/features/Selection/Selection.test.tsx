@@ -24,7 +24,9 @@ const useSelectorMock = jest.spyOn(reactRedux, "useSelector");
 const mockedSelection = jest.mock('Selection');
 const mockedSelectionSlice = jest.mock('SelectionSlice');
 
+// Reference to put  "^config$": "<rootDir>/path/to/App/config.js" in "jest" within package.json
+
 // https://jestjs.io/docs/mock-function-api#typescript-usage
 test('testing addSelection', (state) => {
-         
+    
 })
