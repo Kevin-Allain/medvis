@@ -25,6 +25,8 @@ ul.no-bullets {
     display: grid;
     grid-template-columns: auto auto; 
     grid-gap: 10px;
+    overflow: hidden;
+    overflow-x: visible;
   }
   
   #head1{
