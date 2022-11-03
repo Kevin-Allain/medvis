@@ -16,6 +16,7 @@ const initialState: SelectionState = {
   patientsSelection : []
 }
 
+// note we could add patients following the logic provided in documentation https://redux.js.org/usage/writing-tests
 export const selectionSlice = createSlice({
     name: 'selection',
     initialState,
@@ -48,10 +49,17 @@ export const selectionSlice = createSlice({
     },
   });
 
-  export const { stuff, addAllSelection, removeAllSelection, addSelection, removeSelection, setPatients, sortPatients } = selectionSlice.actions;
+  export const { 
+    stuff, 
+    addAllSelection, 
+    removeAllSelection, 
+    addSelection, 
+    removeSelection, 
+    setPatients, 
+    sortPatients 
+  } = selectionSlice.actions;
 
   export const selectSelection = 
     (state: RootState) => state.selection;
 
   export default selectionSlice.reducer;
-  

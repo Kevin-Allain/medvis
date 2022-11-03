@@ -1,4 +1,9 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
+import { 
+  combineReducers, 
+  configureStore, 
+  ThunkAction, 
+  Action 
+} from '@reduxjs/toolkit'
 import doubleSliderReducer from '../features/DoubleSlider/DoubleSliderSlice';
 import selectionReducer from '../features/Selection/SelectionSlice';
 import filterMenuReducer from '../features/FilterMenu/FilterMenuSlice';
