@@ -27,8 +27,6 @@ export default function App() {
   const [attrList, setattrList] = useState((dataGenerated) ? Object.keys(dataGenerated[0]) : []);
   console.log("In the App");
 
-  // useEffect(() => { document.title = `You clicked ${count} times`; }, [count]);
-
   console.log(dataGenerated);
   console.log(attrList);
   console.log({ valueSlider })
@@ -37,13 +35,11 @@ export default function App() {
   <Provider store={store}>
     <div className="App">
       <div className="grid-container">
-        {/* <div className="item1"> <p className="font-large"> Header </p> <p>You clicked {count} times</p> <button onClick={() => setCount(count + 1)}> Click me </button> </div> */}
         <div className="item2">
           <h3>Menu</h3>
           <div id='selection'>
             <Selection/>
           </div>
-          {/* <hr/> */}
           <FilterMenu></FilterMenu>
         </div>
         <div className="item3">
@@ -51,8 +47,6 @@ export default function App() {
             <LineChart></LineChart>
           </div>
         </div>
-        {/* <div className="item4">Right</div> */}
-        {/* <div className="item5"> Footer </div> */}
       </div>
     </div>
   </Provider>
