@@ -22,9 +22,7 @@ export const selectionSlice = createSlice({
     initialState,
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
-      stuff:(state) => {  }, // , action: PayloadAction<void>
       addSelection:(state, action: PayloadAction<number>)=>{
-        // console.log("addSelection in reducer."); console.log(state.patients, state.patientsSelection, action.payload)
         state.patientsSelection.push(action.payload)
       },
       addAllSelection:(state) =>{
@@ -50,7 +48,6 @@ export const selectionSlice = createSlice({
   });
 
   export const { 
-    stuff, 
     addAllSelection, 
     removeAllSelection, 
     addSelection, 

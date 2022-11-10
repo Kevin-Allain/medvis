@@ -4,7 +4,6 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { Patient } from '../../interface/Patient';
 
 import {
-    stuff,
     selectSelection, 
     addSelection,
     removeSelection,
@@ -35,7 +34,7 @@ const Selection: React.FC = () => {
             {patientsList.map(item => {
                 // console.log({item});console.log(patientsSelection)
                 return <li key={item.name}>
-                    {item.name}{'    '}{/* ,{item.index} &nbsp */}
+                    {item.name}{'   '}
                     {(patientsSelection.includes(item.index))?
                         <button className='removeSelection' 
                         onClick={()=> dispatch(removeSelection(item.index)) }>Remove</button>:
