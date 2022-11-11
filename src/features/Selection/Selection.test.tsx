@@ -40,6 +40,7 @@ import { selectionSlice } from './SelectionSlice';
  import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import renderer from 'react-test-renderer';
 import userEvent from '@testing-library/user-event'
+import FilterMenu from '../FilterMenu/FilterMenu';
 // import configureStore from 'redux-mock-store'
 //  import store from "../../app/store";
 
@@ -219,14 +220,9 @@ test('selection and removal of one patient', () => {
         { name: new RegExp(/Add/i) }
     );
     expect(buttonsAddPatient).toBeDefined();
-    console.log('------ buttonsAddPatient (length and content) ',
-    buttonsAddPatient.length,'--',
-    buttonsAddPatient);
+    // console.log('------ buttonsAddPatient (length and content) ', buttonsAddPatient.length,'--', buttonsAddPatient);
 
-    // let allButtons = document.querySelectorAll("button"); // console.log("~~~~ allButtons (length and content) ", allButtons.length,' ~~ ', allButtons);
-    // for (let i in allButtons){ console.log('i: ',i,", allButtons[i]: ",allButtons[i]); }
-
-    fireEvent.click(buttonsAddPatient[2]);
+    fireEvent.click(buttonsAddPatient[2]); // could be any number as long as it is lesser or equal to number of patients.
     let imgs = screen.queryAllByRole('img');
     expect(imgs.length).toBe(1);
 
@@ -235,19 +231,37 @@ test('selection and removal of one patient', () => {
         { name: new RegExp(/Remove/i) }
     );
     expect(buttonsRemovePatient).toBeDefined();
-    console.log('------ buttonsRemovePatient (length and content)',
-    buttonsRemovePatient.length,'--',
-    buttonsRemovePatient);
+    // console.log('------ buttonsRemovePatient (length and content)', buttonsRemovePatient.length,'--', buttonsRemovePatient);
 
-    fireEvent.click(buttonsRemovePatient[1]);
-    const imgsSecondLook = screen.queryAllByRole('img');
-    expect(imgsSecondLook.length).toBe(0);
-
-    // value or reference was stored? 
+    fireEvent.click(buttonsRemovePatient[1]); // has to be index 1, as the index 0 matches will removal of all patients, and we aim to verify single removal.
     imgs = screen.queryAllByRole('img');    
     expect(imgs.length).toBe(0);
 })
 
+
+test('exploring get with screen', () => {
+
+    const component = render(<Provider store={store}>
+        <Selection/>,
+        <FilterMenu/>
+        <LineChart/>
+    </Provider>);
+
+    global.ResizeObserver = () => ({
+        observe: jest.fn(),
+        unobserve: jest.fn(),
+        disconnect: jest.fn(),
+    });
+
+
+    // TODO get the names of attributes according to global variables
+    expect(screen.getByTestId('max_range_test_voluptate')).toBeDefined();
+
+    // TODO how to interact with the range buttons?
+    // https://testing-library.com/docs/dom-testing-library/api-events/
+    fireEvent.change(screen.getByTestId('max_range_test_voluptate'), {target: {value: 0}} )
+    console.log(screen.getByTestId('max_range_test_voluptate') );
+})
 
 // //// approach with it is complaining
 // // it('adds an element when making a selection', (state) => {

@@ -53,6 +53,7 @@ const DoubleSlider: React.FC<Props> = (props) => {
         <div className="range-input">
           <Input type="range" className="range-min" min={String(filterMenuAttr.minEdge[indexName])} max={String(filterMenuAttr.maxEdge[indexName])} step={String(doubleSliderStep)}
             value={filterMenuAttr.minThreshold[indexName]}
+            data-testid={'min_range_test_'+valueName}
             onChange={e => 
               // setDoubleSliderMin(Math.min(maxEdge, parseInt(e.target.value)))
               dispatch(changeMinThresholdMenu(
@@ -64,6 +65,7 @@ const DoubleSlider: React.FC<Props> = (props) => {
           />
           <Input type="range" className="range-max" min={String(filterMenuAttr.minEdge[indexName])} max={String(filterMenuAttr.maxEdge[indexName])} step={String(doubleSliderStep)}
             value={filterMenuAttr.maxThreshold[indexName]}
+            data-testid={'max_range_test_'+valueName}
             onChange={e => 
               // setDoubleSliderMax(Math.max(minEdge, parseInt(e.target.value)))
               dispatch(changeMaxThresholdMenu({

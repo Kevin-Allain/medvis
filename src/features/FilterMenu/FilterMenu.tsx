@@ -25,7 +25,9 @@ const FilterMenu: React.FC = () => {
     let final = [];
     for (let i in medTests){
         let str = medTests[i];
-        if (str==='aliquip'||str==='consectetur'||str==='laboris'||str==='voluptate'){final.push(<DoubleSlider key={str} valueName={str} ></DoubleSlider>)}
+        if (str==='aliquip'||str==='consectetur'||str==='laboris'||str==='voluptate'){
+            final.push(<DoubleSlider key={str} valueName={str} ></DoubleSlider>)
+        }
     }
 
     return (
