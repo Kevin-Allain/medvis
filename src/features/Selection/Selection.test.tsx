@@ -108,9 +108,23 @@ test('creation', () => {
     // expect(tree).toMatchSnapshot();
 });
 
+test('no img when setting up program', () => {
+    const component = render(<Provider store={store}>
+        <Selection/>,
+        <LineChart/>
+    </Provider>);
 
+    global.ResizeObserver = () => ({
+        observe: jest.fn(),
+        unobserve: jest.fn(),
+        disconnect: jest.fn(),
+    });
 
-test('addition of all selection', () => {
+    const imgs = screen.queryAllByRole('img');
+    expect(imgs.length).toBe(0);
+});
+
+test('selection of all patients', () => {
     const component = render(<Provider store={store}>
         <Selection/>,
         <LineChart/>
@@ -155,10 +169,9 @@ test('addition of all selection', () => {
 
     // // // Unable to find an accessible element with the role "img"
     // // console.log( screen.getAllByRole('img'))
-
 });
 
-test('addition of element', () => {
+test('selection of all patients and removal of all patients', () => {
     const component = render(<Provider store={store}>
         <Selection/>,
         <LineChart/>
@@ -170,24 +183,26 @@ test('addition of element', () => {
         disconnect: jest.fn(),
     });
 
-    const buttonsAddPatient = screen.getAllByRole(
+    const buttonAddAllPatients = screen.getByRole(
         'button', 
-        { name: /Add/ }
-    )    
-    expect(buttonsAddPatient).toBeDefined();
-
-    fireEvent.click(buttonsAddPatient[0]);
-    const imgs = screen.getAllByRole('img');
+        { name: /Add all patients/ }
+    );
+    expect(buttonAddAllPatients).toBeDefined();
+    fireEvent.click(buttonAddAllPatients);
+    let imgs = screen.getAllByRole('img');
     expect(imgs.length).toBeGreaterThan(0);
-})
 
-test('no img when setting up program', () => {
-    const imgs = screen.queryAllByRole('img');
+    const buttonRemoveAllPatients = screen.getByRole(
+        'button', 
+        { name: /Remove all patients/ }
+    );
+    expect(buttonRemoveAllPatients).toBeDefined();
+    fireEvent.click(buttonRemoveAllPatients);
+    imgs = screen.queryAllByRole('img');
     expect(imgs.length).toBe(0);
 })
 
-
-test('addition and removal of all elements', () => {
+test('selection and removal of one patient', () => {
     const component = render(<Provider store={store}>
         <Selection/>,
         <LineChart/>
@@ -199,38 +214,32 @@ test('addition and removal of all elements', () => {
         disconnect: jest.fn(),
     });
 
-
-    let buttonsAddPatient = screen.getAllByRole(
+    let buttonsAddPatient = screen.queryAllByRole(
         'button',
-        { name: new RegExp('Add all patients') }
+        { name: new RegExp(/Add/i) }
     );
     expect(buttonsAddPatient).toBeDefined();
     console.log('------ buttonsAddPatient (length and content) ',
     buttonsAddPatient.length,'--',
     buttonsAddPatient);
 
-    let allButtons = document.querySelectorAll("button");
-    console.log("~~~~ allButtons (length and content) ",
-    allButtons.length,' ~~ ',
-    allButtons)
-    for (let i in allButtons){
-        console.log('i: ',i,", allButtons[i]: ",allButtons[i]);
-    }
+    // let allButtons = document.querySelectorAll("button"); // console.log("~~~~ allButtons (length and content) ", allButtons.length,' ~~ ', allButtons);
+    // for (let i in allButtons){ console.log('i: ',i,", allButtons[i]: ",allButtons[i]); }
 
-    fireEvent.click(buttonsAddPatient[0]);
+    fireEvent.click(buttonsAddPatient[2]);
     let imgs = screen.queryAllByRole('img');
-    expect(imgs.length).toBeGreaterThan(0);
+    expect(imgs.length).toBe(1);
 
-    let buttonsRemovePatient = screen.getAllByRole(
+    let buttonsRemovePatient = screen.queryAllByRole(
         'button', 
-        { name: new RegExp('Remove all patients') }
+        { name: new RegExp(/Remove/i) }
     );
     expect(buttonsRemovePatient).toBeDefined();
     console.log('------ buttonsRemovePatient (length and content)',
     buttonsRemovePatient.length,'--',
     buttonsRemovePatient);
 
-    fireEvent.click(buttonsRemovePatient[0]);
+    fireEvent.click(buttonsRemovePatient[1]);
     const imgsSecondLook = screen.queryAllByRole('img');
     expect(imgsSecondLook.length).toBe(0);
 
