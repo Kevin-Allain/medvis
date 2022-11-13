@@ -51,7 +51,8 @@ const DoubleSlider: React.FC<Props> = (props) => {
           <div className="progress"></div>
         </div>
         <div className="range-input">
-          <Input type="range" className="range-min" min={String(filterMenuAttr.minEdge[indexName])} max={String(filterMenuAttr.maxEdge[indexName])} step={String(doubleSliderStep)}
+          <Input type="range" 
+            className="range-min" min={String(filterMenuAttr.minEdge[indexName])} max={String(filterMenuAttr.maxEdge[indexName])} step={String(doubleSliderStep)}
             value={filterMenuAttr.minThreshold[indexName]}
             data-testid={'min_range_test_'+valueName}
             onChange={e => 
@@ -63,7 +64,8 @@ const DoubleSlider: React.FC<Props> = (props) => {
                 }), )
             }
           />
-          <Input type="range" className="range-max" min={String(filterMenuAttr.minEdge[indexName])} max={String(filterMenuAttr.maxEdge[indexName])} step={String(doubleSliderStep)}
+          <Input type="range" className="range-max" 
+            min={String(filterMenuAttr.minEdge[indexName])} max={String(filterMenuAttr.maxEdge[indexName])} step={String(doubleSliderStep)}
             value={filterMenuAttr.maxThreshold[indexName]}
             data-testid={'max_range_test_'+valueName}
             onChange={e => 

@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// import { StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
 import {
   Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend,
@@ -42,7 +42,7 @@ export default function App() {
           </div>
           <FilterMenu></FilterMenu>
         </div>
-        <div className="item3">
+        <div className="item3" data-testid='item3'>
           <div id="lineCharts"> 
             <LineChart></LineChart>
           </div>
@@ -53,11 +53,11 @@ export default function App() {
   </>;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#aaa',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#aaa',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });

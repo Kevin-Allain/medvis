@@ -23,7 +23,6 @@ type LineChartProps = {
 }
 
 export const linearInterpolate = (before: number, after: number, atPoint: number) => { return before + (after - before) * atPoint; };
-export const sumTest = (a:number,b:number) => { return a+b ;};
 
 const numCols = 2;
 

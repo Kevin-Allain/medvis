@@ -26,6 +26,7 @@ import '@testing-library/jest-dom'
 import Selection from './Selection';
 import LineChart from '../LineChart/LineChart';
 import { store } from '../../app/store';
+import FilterMenu from '../FilterMenu/FilterMenu';
 
 import useResizeObserver from "use-resize-observer";
 // ! render is already imported from @testing-library/react. May need to remove this dependency
@@ -40,7 +41,6 @@ import { selectionSlice } from './SelectionSlice';
  import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import renderer from 'react-test-renderer';
 import userEvent from '@testing-library/user-event'
-import FilterMenu from '../FilterMenu/FilterMenu';
 // import configureStore from 'redux-mock-store'
 //  import store from "../../app/store";
 
@@ -238,30 +238,6 @@ test('selection and removal of one patient', () => {
     expect(imgs.length).toBe(0);
 })
 
-
-test('exploring get with screen', () => {
-
-    const component = render(<Provider store={store}>
-        <Selection/>,
-        <FilterMenu/>
-        <LineChart/>
-    </Provider>);
-
-    global.ResizeObserver = () => ({
-        observe: jest.fn(),
-        unobserve: jest.fn(),
-        disconnect: jest.fn(),
-    });
-
-
-    // TODO get the names of attributes according to global variables
-    expect(screen.getByTestId('max_range_test_voluptate')).toBeDefined();
-
-    // TODO how to interact with the range buttons?
-    // https://testing-library.com/docs/dom-testing-library/api-events/
-    fireEvent.change(screen.getByTestId('max_range_test_voluptate'), {target: {value: 0}} )
-    console.log(screen.getByTestId('max_range_test_voluptate') );
-})
 
 // //// approach with it is complaining
 // // it('adds an element when making a selection', (state) => {
