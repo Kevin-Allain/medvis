@@ -32,7 +32,7 @@ const LineChart: FC<LineChartProps> = ((props) => {
     const patients = selectionAttr.patients;
     const patientsSelection = selectionAttr.patientsSelection;
 
-    const dlSliderAttr = useAppSelector(selectDoubleSlider);
+    // const dlSliderAttr = useAppSelector(selectDoubleSlider);
     const filterMenuAttr = useAppSelector(selectFilterMenu);
 
     const final = [];let final1 = [], final2=[];
@@ -87,19 +87,15 @@ const LineChart: FC<LineChartProps> = ((props) => {
         }
     }
 
-    // return (<> <ul className='no-bullets' >{final}</ul> </>);
-
     // ---- Attempt to make something prettier
     // return (<> <table> <tbody>{final}</tbody> </table> </>);
-    final2 = final.filter( (v,i) => i%numCols ) 
-    final1 = final.filter( (v,i) => !(i%numCols) ) 
+    final2 = final.filter( (v,i) => i%numCols );
+    final1 = final.filter( (v,i) => !(i%numCols));
 
-    let structHTML = <div id="grid">
+    const structHTML = <div id="grid">
         <div className="head1" id='head1'>{final1}</div>
         <div className="head2" id='head2'>{final2}</div>
     </div>
-
-    // console.log({structHTML, final1,final2})
 
     return (<>
         {structHTML}
