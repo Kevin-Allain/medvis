@@ -2,39 +2,26 @@ import {
     Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ChartData, ScatterDataPoint, CoreChartOptions, ElementChartOptions, PluginChartOptions, DatasetChartOptions, ScaleChartOptions, LineControllerChartOptions,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-// import faker from 'faker';
 import { FC, useState } from 'react';
 import { _DeepPartialObject } from 'chart.js/types/utils';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import '../../Styles/LineChart.css';
-
-import {
-    decrement, increment, incrementByAmount,
-    selectDoubleSlider,
-} from '../DoubleSlider/DoubleSliderSlice';
 import { selectSelection, sortPatients } from '../Selection/SelectionSlice';
 import { changeMaxEdgeMenu, changeMinEdgeMenu, changeMaxThresholdMenu, changeMinThresholdMenu, selectFilterMenu, } from '../FilterMenu/FilterMenuSlice';
-import { LocationDisabledRounded } from '@material-ui/icons';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-type LineChartProps = {
-    // options?: _DeepPartialObject<CoreChartOptions<"line"> & ElementChartOptions<"line"> & PluginChartOptions<"line"> & DatasetChartOptions<"line"> & ScaleChartOptions<"line"> & LineControllerChartOptions> | undefined; // numLongitunal?: number; // patients?:Array<Patient>; // numLines:number; // labels: (number|string)[] | undefined; // data: ChartData<"line", (number | ScatterDataPoint | null)[], unknown> | null;    
-}
+type LineChartProps = {}
 
 export const linearInterpolate = (before: number, after: number, atPoint: number) => { return before + (after - before) * atPoint; };
 
 const numCols = 2;
 
 const LineChart: FC<LineChartProps> = ((props) => {
-
     const selectionAttr = useAppSelector(selectSelection);
     const patients = selectionAttr.patients;
     const patientsSelection = selectionAttr.patientsSelection;
-
-    // const dlSliderAttr = useAppSelector(selectDoubleSlider);
     const filterMenuAttr = useAppSelector(selectFilterMenu);
-
     const final = [];let final1 = [], final2=[];
 
     for (let patient of patients) {
@@ -62,13 +49,10 @@ const LineChart: FC<LineChartProps> = ((props) => {
             let labels = [...patient.medTests[0].listRecords.filter( a => !toFilterAll.includes(a.record)).map(t => t.record)]; 
             labels = filteredRecords.map( a => a );
 
-
             for (let i = 0; i < patient.medTests.length; i++) {
-                // let iterData = []; // for (let pm in patient.medTests) { for (let pmd in patient.medTests[pm].listRecords) { iterData.push({ x: patient.medTests[pm].listRecords[pmd].record, y: patient.medTests[pm].listRecords[pmd].score }) } }
                 datasets.push({
                     label: `Dataset ${patient.medTests[i].testName}`,
                     data:  [...patient.medTests[i].listRecords.filter(a => labels.includes(a.record) ).map(a => a.score)],
-                    // [...patient.medTests[i].listRecords.filter(a => a.score >= filterMenuAttr.minThreshold[i] && a.score <= filterMenuAttr.maxThreshold[i]).map(a => a.score)], // data: iterData,
                     borderColor: `rgb(${(i + 3) * 700 % 255}, ${(i + 1) * 200 % 255}, ${(i + 1) * 400 % 255})`,
                     backgroundColor: `rgba(${(i + 3) * 700 % 255}, ${(i + 1) * 200 % 255}, ${(i + 1) * 400 % 255}, 0.5)`,
                 })
@@ -79,7 +63,6 @@ const LineChart: FC<LineChartProps> = ((props) => {
                 plugins: { legend: { position: 'top' as const, }, title: { display: true, text: `Patient ${patient.name}`, },},
             };
             const data = { labels , datasets: datasets };
-            // final.push( <li key={patient.name}>  <Line options={options} data={data}></Line> </li>  );
             final.push(
                 <Line key={patient.name} options={options} data={data}></Line>
             )
@@ -87,20 +70,15 @@ const LineChart: FC<LineChartProps> = ((props) => {
         }
     }
 
-    // ---- Attempt to make something prettier
-    // return (<> <table> <tbody>{final}</tbody> </table> </>);
     final2 = final.filter( (v,i) => i%numCols );
     final1 = final.filter( (v,i) => !(i%numCols));
-
     const structHTML = <div id="grid">
         <div className="head1" id='head1'>{final1}</div>
         <div className="head2" id='head2'>{final2}</div>
     </div>
-
     return (<>
         {structHTML}
     </>)
-
 }
 )
 

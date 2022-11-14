@@ -20,7 +20,6 @@ const initialState: SelectionState = {
 export const selectionSlice = createSlice({
     name: 'selection',
     initialState,
-    // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
       addSelection:(state, action: PayloadAction<number>)=>{
         state.patientsSelection.push(action.payload)
@@ -33,12 +32,10 @@ export const selectionSlice = createSlice({
       },      
       removeSelection:(state, action: PayloadAction<number>)=>{
         state.patientsSelection = state.patientsSelection.filter( (v) => action.payload !== v)
-        // [1,2,4,5,6,6,'a'].filter((v)=>v!==6786478678)
       },
       setPatients:(state, action:PayloadAction<Array<Patient>>)=>{
         state.patients=action.payload;
       },
-      // With a payload and a type of sorting, we can implement it based on dates, numbers or alphabetic order
       sortPatients:(state) => {
         state.patients.forEach( 
           a=> a.medTests.forEach( 
