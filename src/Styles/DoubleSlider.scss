@@ -2,12 +2,12 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 50vh;
-  background: #4a7077;
+  // min-height: 50vh;
+  background: #5a5a5a;
 }
 ::selection{
   color: #fff;
-  background: #17A2B8;
+  background: #6f6f6f;
 }
 .wrapper{
   width: 90%;
@@ -72,7 +72,6 @@ input[type="number"]::-webkit-inner-spin-button {
   right: 25%;
   position: absolute;
   border-radius: 5px;
-  // background: #17A2B8;
 }
 .range-input{
   position: relative;

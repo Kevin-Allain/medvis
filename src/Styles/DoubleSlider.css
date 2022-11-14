@@ -2,18 +2,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 50vh;
-  background: #4a7077;
+  background: #5a5a5a;
 }
 
 ::-moz-selection {
   color: #fff;
-  background: #17A2B8;
+  background: #6f6f6f;
 }
 
 ::selection {
   color: #fff;
-  background: #17A2B8;
+  background: #6f6f6f;
 }
 
 .wrapper {
